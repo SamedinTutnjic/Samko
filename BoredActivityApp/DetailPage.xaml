@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:BoredActivityApp.ViewModels"
+             x:Class="BoredActivityApp.Views.DetailPage">
+    <ContentPage.BindingContext>
+        <vm:DetailViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView Padding="20">
+        <Label Text="{Binding Activity.Activity}" FontSize="24" FontAttributes="Bold" />
+        <Label Text="Type: {Binding Activity.Type}" />
+        <Label Text="Participants: {Binding Activity.Participants}" />
+        <Label Text="Price: {Binding Activity.Price}" />
+        <Label Text="Accessibility: {Binding Activity.Accessibility}" />
+        <Label Text="Kid Friendly: {Binding Activity.KidFriendly}" />
+        <Label Text="Link: {Binding Activity.Link}" />
+    </ScrollView>
+</ContentPage>

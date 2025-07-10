@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:BoredActivityApp.ViewModels"
+             x:Class="BoredActivityApp.Views.MainPage">
+    <ContentPage.BindingContext>
+        <vm:MainViewModel />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="20">
+        <Picker Title="Type" ItemsSource="{Binding Types}" SelectedItem="{Binding SelectedType}" />
+        <Picker Title="Participants" ItemsSource="{Binding ParticipantsOptions}" SelectedItem="{Binding SelectedParticipants}" />
+        <Button Text="Search" Command="{Binding SearchCommand}" />
+        <CollectionView ItemsSource="{Binding Activities}" SelectionMode="Single" SelectedItem="{Binding SelectedActivity}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="10" Margin="5">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="{Binding Activity}" />
+                            <Label Grid.Column="1" Text="{Binding Accessibility}" />
+                        </Grid>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=SelectCommand}" CommandParameter="{Binding .}" />
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>
